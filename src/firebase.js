@@ -17,14 +17,31 @@ initializeApp(firebaseConfig);
 const db = getFirestore()
 
 //collection ref
-const colRef = collection(db, 'leaderboard')
+const leaderboard = collection(db, 'leaderboard')
 
 //get collection data
-getDocs(colRef)
+getDocs(leaderboard)
     .then((snapshot) => {
         let leaderboard = [];
         snapshot.docs.forEach((doc) => {
             leaderboard.push({ ...doc.data(), id: doc.id })
         })
-        console.log(leaderboard);
     })
+
+const positions = collection(db, 'locations');
+
+
+
+function getLocations() {
+    const locations = []
+
+    getDocs(positions)
+    .then((snapshot => {
+        snapshot.docs.forEach((doc) => {
+            locations.push({...doc.data()})
+        })
+    }))
+    return locations
+}
+
+export default getLocations()

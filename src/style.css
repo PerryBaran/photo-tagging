@@ -49,6 +49,7 @@ h1 {
     margin-right: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
+    overflow: visible;
 }
 
 .character {
@@ -64,4 +65,21 @@ h1 {
 
 .character > p {
     text-align: center;
+}
+
+.found {
+    box-shadow: 0 0 10px green;
+    overflow: visible;
+}
+
+.win {
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+    margin: auto;
 }

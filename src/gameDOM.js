@@ -2,23 +2,27 @@ import board from "./images/gameboard.jpg";
 import waldo from "./images/waldo.png";
 import odlaw from "./images/odlaw.png";
 import wenda from "./images/wenda.png";
+import getMousePosition from "./game.js";
+import checkWin from "./youwin.js";
+import reset from "./reset.js";
 
-const charactersArray = [
-    {name: 'Waldo', src: waldo}, 
-    {name: 'Odlaw', src: odlaw},
-    {name: 'Wenda', src: wenda}
-];
+const initializeGame = () => {
+    const charactersArray = [
+        {name: 'Waldo', src: waldo, found: false}, 
+        {name: 'Odlaw', src: odlaw, found: false},
+        {name: 'Wenda', src: wenda, found: false}
+    ];
 
-function initializeGame() {
     const characters = document.getElementById('characters');
     createCharacters(characters, charactersArray);
 
-    const board = document.getElementById('board');
-    createBoard(board);
-    
+    const boardContainer = document.getElementById('board');
+    const board = createBoard(boardContainer);
+    boardClick(board, characters, charactersArray, boardContainer);
 }
 
 const createCharacters = (container, array) => { 
+    reset(container)
     const p = document.createElement('p');
     p.innerHTML = 'Can you find...'
     container.appendChild(p);
@@ -26,7 +30,11 @@ const createCharacters = (container, array) => {
     const length = array.length;
     for (let i = 0; i < length; i++) {
         const character = document.createElement('div');
-        character.className = 'character'
+        if (array[i].found) {
+            character.className = 'character found'
+        } else {
+          character.className = 'character'  
+        }
 
         const img = document.createElement('img');
         img.src = array[i].src;
@@ -46,15 +54,14 @@ const createBoard = (container) => {
     gameboard.className = "board";
     container.appendChild(gameboard);
 
-    getMousePosition(gameboard);
+    return gameboard;
 }
 
-const getMousePosition = (element) => {
-    element.onclick = (e) => {
-        const area = e.target.getBoundingClientRect();
-        const x = e.clientX - area.left;
-        const y = e.clientY - area.top;
-        console.log(x, y);
+const boardClick = (board, characters, array, boardContainer) => {
+    board.onclick = (e) => {
+        getMousePosition(e, array);
+        createCharacters(characters, array)
+        checkWin(boardContainer, array);
     }
 }
 
