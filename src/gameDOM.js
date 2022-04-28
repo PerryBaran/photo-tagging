@@ -2,23 +2,51 @@ import board from "./images/gameboard.jpg";
 import waldo from "./images/waldo.png";
 import odlaw from "./images/odlaw.png";
 import wenda from "./images/wenda.png";
-import getMousePosition from "./game.js";
+import getMousePosition from "./position.js";
 import checkWin from "./youwin.js";
 import reset from "./reset.js";
+import checkFound from "./found";
 
-const initializeGame = () => {
+const start = () => {
+    const boardContainer = document.getElementById('board');
+    reset(boardContainer);
+    
     const charactersArray = [
         {name: 'Waldo', src: waldo, found: false}, 
         {name: 'Odlaw', src: odlaw, found: false},
         {name: 'Wenda', src: wenda, found: false}
     ];
 
-    const characters = document.getElementById('characters');
-    createCharacters(characters, charactersArray);
+    const charactersContainer = document.getElementById('characters');
+    createCharacters(charactersContainer, charactersArray);
 
-    const boardContainer = document.getElementById('board');
+    const button = document.createElement('button');
+    button.className = 'start';
+    button.innerHTML = 'start';
+
+    button.addEventListener('click', () => {
+        initializeGame(boardContainer, charactersArray, charactersContainer);
+    })
+    
+    boardContainer.appendChild(button);
+
+}
+
+const initializeGame = (boardContainer, charactersArray, charactersContainer) => {
+    reset(boardContainer);
     const board = createBoard(boardContainer);
-    boardClick(board, characters, charactersArray, boardContainer);
+    
+    const popupContainer = document.createElement('div');
+    popupContainer.className = 'popup';
+    boardContainer.appendChild(popupContainer);
+
+    board.onclick = (e) => {
+        const coordinates = getMousePosition(e);
+        const x = coordinates.x;
+        const y = coordinates.y;
+        popup(x, y, popupContainer, charactersArray, charactersContainer)
+    }
+
 }
 
 const createCharacters = (container, array) => { 
@@ -57,12 +85,30 @@ const createBoard = (container) => {
     return gameboard;
 }
 
-const boardClick = (board, characters, array, boardContainer) => {
-    board.onclick = (e) => {
-        getMousePosition(e, array);
-        createCharacters(characters, array)
-        checkWin(boardContainer, array);
+const popup = (x, y, container, characters, charactersContainer) => {
+    reset(container);
+    container.style.left = `${x + 20}px` 
+    container.style.top = `${y + 20}px`
+
+    const length = characters.length;
+    for (let i = 0; i < length; i++) {
+        const character = characters[i]
+        const select = document.createElement('div');
+        select.className = "select";
+         
+        const name = document.createElement('p');
+        name.innerHTML = character.name
+
+        select.addEventListener('click', () => {
+            checkFound(character.name, x, y, characters);
+            createCharacters(charactersContainer, characters);
+            checkWin(characters);
+            reset(container);
+        })
+
+        select.appendChild(name);
+        container.appendChild(select);
     }
 }
 
-export default initializeGame
+export default start

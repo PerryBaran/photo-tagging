@@ -1,6 +1,6 @@
-import reset from "./reset.js";
+const youWin = () => {
+    const container = document.getElementById('boardContainer')
 
-const youWin = (container) => {
     const div = document.createElement('div');
     div.className = 'win'
 
@@ -22,9 +22,10 @@ const youWin = (container) => {
     div.appendChild(submit);
 
     container.appendChild(div);
+    console.log('you win!')
 }
 
-const checkWin = (board, array) => {
+const checkWin = (array) => {
     const length = array.length;
     //check if all characters are found by looping through character array again
     for (let n = 0; n < length; n++) {
@@ -35,8 +36,8 @@ const checkWin = (board, array) => {
         }
     }
     //if all character found - you win!!
-    youWin(board);
-    console.log('you win!')    
+    youWin();
+        
 }
 
 export default checkWin

@@ -1,4 +1,4 @@
 import './style.css';
-import initializeGame from "./gameDOM.js";
+import start from "./gameDOM.js";
 
-initializeGame();
+start();
