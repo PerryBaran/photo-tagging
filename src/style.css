@@ -6,10 +6,11 @@
     overflow: hidden;
 }
 
-:root {
-    --header-height: 55px;
+button {
+    cursor: pointer;
 }
 
+/*top bar*/
 .header {
     background-color: red;
     color: white;
@@ -17,46 +18,23 @@
     height: var(--header-height);
 }
 
-.leaderboard {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.openLeaderboard {
-    
-}
-
 h1 {
     display: inline-block;
-    width: fit-content;
-    font-size: 3rem;
-}
-
-#board {
-    background-color: red;
     position: relative;
-    width: calc(100vw - 60px);
-    height: calc(100vh - var(--header-height) - 200px);
-    overflow: scroll;
+    top: 10px;
+    width: fit-content;
+    font-size: 4rem;
 }
-
-.board {
-    width: 2000px;
-}
-
 #characters {
     display: inline-flex;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 10px;
     margin-bottom: 10px;
-    overflow: visible;
+    margin-top: 10px;
 }
 
 .character {
+    background-color: white;
     border: 1px solid black;
-    margin-left: 5px;
+    margin-right: 10px;
 }
 
 .character > img {
@@ -66,6 +44,8 @@ h1 {
 }
 
 .character > p {
+    margin-top: 0;
+    color: black;
     text-align: center;
 }
 
@@ -73,10 +53,65 @@ h1 {
     opacity: 0.5;
 }
 
+/*game board styling*/
+#boardContainer {
+    margin-top: 20px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#board {
+    position: relative;
+    width: calc(100vw - 60px);
+    height: calc(100vh - 200px);
+    overflow: auto;
+}
+
+.boardImage {
+    width: 2000px;
+}
+
+/*select found character popup*/
+.popup {
+    position: absolute;
+    background-color: white;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.select {
+    font-size: 1.5rem;
+    padding: 2px;
+}
+
+.select:hover {
+    background-color: red;
+    color: white; 
+}
+
+/*start game button*/
+.start {
+    background-color: red;
+    border: none;
+    border-radius: 20px;
+    font-size: 5rem;
+    color: white;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/*win screen*/
 .win {
     background-color: red;
+    border: none;
+    border-radius: 20px;
+    font-size: 2rem;
+    color: white;
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     left: 50%;
     transform: translateX(-50%);
@@ -85,20 +120,17 @@ h1 {
     margin: auto;
 }
 
-.popup {
-    position: absolute;
-    background-color: white;
+/*leaderboard*/
+.leaderboard {
+    text-align: center;
+    margin-top: 10px;
 }
 
-#boardContainer {
-    width: fit-content;
-    height: fit-content;
-}
-
-.start {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 50%;
-    transform: translateX(-50%);
+.openLeaderboard {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 6px;
+    border-radius: 10px;
+    font-size: 1rem;
 }

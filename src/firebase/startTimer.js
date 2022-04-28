@@ -1,3 +1,8 @@
+//import db from './initialize.js';
+//import uniqid from 'uniqid';
+//import { collection, addDoc, Timestamp } from 'firebase/firestore';
+
+
 //on start
 //create unique id and make a timestamp and save to temp
 //after all found - make another timestamp, use unique id to work out who's

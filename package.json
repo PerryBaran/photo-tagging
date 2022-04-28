@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/PerryBaran/photo-tagging#readme",
   "dependencies": {
-    "firebase": "^9.6.11"
+    "firebase": "^9.6.11",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "webpac": "^0.0.1-security",

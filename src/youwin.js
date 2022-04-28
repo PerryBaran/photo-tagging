@@ -1,3 +1,7 @@
+import start from './game.js';
+import reset from './reset.js';
+
+//creates winning screen
 const youWin = () => {
     const container = document.getElementById('boardContainer')
 
@@ -21,6 +25,14 @@ const youWin = () => {
     submit.innerHTML = 'submit'
     div.appendChild(submit);
 
+    const restart = document.createElement('button');
+    restart.innerHTML = 'restart';
+    restart.onclick = () => {
+        start();
+        reset(div);
+    }
+    div.appendChild(restart)
+
     container.appendChild(div);
     console.log('you win!')
 }
@@ -29,7 +41,7 @@ const checkWin = (array) => {
     const length = array.length;
     //check if all characters are found by looping through character array again
     for (let n = 0; n < length; n++) {
-        //if all characters aren't found return
+        //if a character isn't found return
         const found = array[n].found;
         if (!found) {
             return

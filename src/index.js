@@ -1,4 +1,4 @@
 import './style.css';
-import start from "./gameDOM.js";
+import start from "./game.js";
 
 start();

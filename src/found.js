@@ -1,4 +1,4 @@
-import getLocations from './firebase.js';
+import getLocations from './firebase/coordinates';
 
 const checkFound = (name, x, y, characters) => {
     //array of locations
@@ -14,6 +14,7 @@ const checkFound = (name, x, y, characters) => {
         && x > location.left && x < location.right
         && y > location.top && y < location.bottom) {
             
+            //if true - set correct character to found
             const charactersLength = characters.length;
             for (let j = 0; j < charactersLength; j++) {
                 const character = characters[j];
@@ -21,7 +22,6 @@ const checkFound = (name, x, y, characters) => {
                     character.found = true
                 }
             }
-            
         }
     } 
 }
