@@ -18,15 +18,24 @@ const youWin = (timer) => {
 
     const p2 = document.createElement('p');
     p2.innerHTML = 'To submit your time to the leaderboard please enter a name'
+    p2.className = 'small'
     div.appendChild(p2);
 
     const form = document.createElement('form');
-    const input = document.createElement('input');
-    input.placeholder = 'name';
-    form.appendChild(input);
+    const name = document.createElement('input');
+    name.placeholder = 'name';
+    name.required = true;
+    form.appendChild(name);
 
     const submit = document.createElement('button');
     submit.innerHTML = 'submit'
+    submit.onclick = (e) => {
+        e.preventDefault();
+        const valid = form.checkValidity();
+        if (valid) {
+            console.log(name.value, timer.getTime())  
+        }
+    }
     form.appendChild(submit);
     div.appendChild(form);
 

@@ -20,12 +20,12 @@ const Timer = () => {
     }
 
     const stop = () => {
+        if (secs < 10) {secs = `0${secs}`}
+        if (mins < 10) {mins = `0${mins}`}
         clearInterval(interval);
     }
 
     const getTime = () => {
-        if (secs < 10) {secs = `0${secs}`}
-        if (mins < 10) {mins = `0${mins}`}
         return `${mins}:${secs}`
     }
 
