@@ -6,9 +6,11 @@ import getMousePosition from "./position.js";
 import checkWin from "./youwin.js";
 import reset from "./reset.js";
 import checkFound from "./found";
+import Timer from "./timer.js";
 
 //sets up start button
 const start = () => {
+    const timer = Timer();
     //gets container and resets - allows for restarting of game on completion
     const boardContainer = document.getElementById('board');
     reset(boardContainer);
@@ -31,7 +33,8 @@ const start = () => {
 
     button.addEventListener('click', () => {
         //loads art and starts game loop
-        initializeGame(boardContainer, charactersArray, charactersContainer);
+        initializeGame(boardContainer, charactersArray, charactersContainer, timer);
+        timer.start();
     })
     
     boardContainer.appendChild(button);
@@ -62,7 +65,7 @@ const createCharacters = (container, array) => {
     }
 }
 
-const initializeGame = (boardContainer, charactersArray, charactersContainer) => {
+const initializeGame = (boardContainer, charactersArray, charactersContainer, timer) => {
     //resets board (removes start button)
     reset(boardContainer);
     const board = createBoard(boardContainer);
@@ -80,7 +83,7 @@ const initializeGame = (boardContainer, charactersArray, charactersContainer) =>
         const y = coordinates.y;
 
         //creates a popup allowing for selection of found character
-        popup(x, y, popupContainer, charactersArray, charactersContainer)
+        popup(x, y, popupContainer, charactersArray, charactersContainer, timer)
     }
 }
 
@@ -95,7 +98,7 @@ const createBoard = (container) => {
 }
 
 //creates popup for selecting found character
-const popup = (x, y, container, characters, charactersContainer) => {
+const popup = (x, y, container, characters, charactersContainer, timer) => {
     reset(container);
 
     //positions popup near mouse
@@ -118,7 +121,7 @@ const popup = (x, y, container, characters, charactersContainer) => {
             checkFound(character.name, x, y, characters);
             //updates UI if character is found or game is won
             createCharacters(charactersContainer, characters);
-            checkWin(characters);
+            checkWin(characters, timer);
             //hides container after making selection
             reset(container);
         });
