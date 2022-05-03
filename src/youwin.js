@@ -1,5 +1,7 @@
 import start from './game.js';
 import reset from './reset.js';
+import leaderboardButton from './leaderboardDOM.js';
+import submitToLeaderboard from './firebase/submitTime.js';
 
 //creates winning screen
 const youWin = (timer) => {
@@ -33,7 +35,10 @@ const youWin = (timer) => {
         e.preventDefault();
         const valid = form.checkValidity();
         if (valid) {
-            console.log(name.value, timer.getTime())  
+            const doc = {name: name.value, time: timer.getTime()}
+            submitToLeaderboard(doc);
+            reset(div);
+            start();
         }
     }
     form.appendChild(submit);
@@ -42,13 +47,14 @@ const youWin = (timer) => {
     const restart = document.createElement('button');
     restart.innerHTML = 'restart';
     restart.onclick = () => {
-        start();
         reset(div);
+        start();
     }
     div.appendChild(restart)
 
     container.appendChild(div);
-    console.log('you win!')
+
+    leaderboardButton(container);
 }
 
 const checkWin = (array, timer) => {

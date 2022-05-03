@@ -7,13 +7,17 @@ import checkWin from "./youwin.js";
 import reset from "./reset.js";
 import checkFound from "./found";
 import Timer from "./timer.js";
+import leaderboardButton from "./leaderboardDOM";
 
 //sets up start button
 const start = () => {
     const timer = Timer();
     //gets container and resets - allows for restarting of game on completion
-    const boardContainer = document.getElementById('board');
+    const boardContainer = document.getElementById('boardContainer');
     reset(boardContainer);
+    const gameContainer = document.createElement('div');
+    gameContainer.id ='board';
+    boardContainer.appendChild(gameContainer);
     
     //creates array characters
     const charactersArray = [
@@ -31,13 +35,15 @@ const start = () => {
     button.className = 'start';
     button.innerHTML = 'START';
 
-    button.addEventListener('click', () => {
+    button.onclick = () => {
         //loads art and starts game loop
-        initializeGame(boardContainer, charactersArray, charactersContainer, timer);
+        initializeGame(gameContainer, charactersArray, charactersContainer, timer);
         timer.start();
-    })
+    }
     
-    boardContainer.appendChild(button);
+    gameContainer.appendChild(button);
+    //open leaderboard button
+    leaderboardButton(gameContainer);
 }
 
 //creates characters DOM elements and styles depending on found status
@@ -65,15 +71,15 @@ const createCharacters = (container, array) => {
     }
 }
 
-const initializeGame = (boardContainer, charactersArray, charactersContainer, timer) => {
+const initializeGame = (gameContainer, charactersArray, charactersContainer, timer) => {
     //resets board (removes start button)
-    reset(boardContainer);
-    const board = createBoard(boardContainer);
+    reset(gameContainer);
+    const board = createBoard(gameContainer);
     
     //creates the popupContainer for selecting characters (left empty)
     const popupContainer = document.createElement('div');
     popupContainer.className = 'popup';
-    boardContainer.appendChild(popupContainer);
+    gameContainer.appendChild(popupContainer);
 
     //board listeners
     board.onclick = (e) => {

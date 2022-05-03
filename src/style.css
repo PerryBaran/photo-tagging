@@ -10,6 +10,10 @@ button {
     cursor: pointer;
 }
 
+:root {
+    --header-height: 125px;
+}
+
 /*top bar*/
 .header {
     background-color: red;
@@ -55,15 +59,14 @@ h1 {
 
 /*game board styling*/
 #boardContainer {
-    margin-top: 20px;
     width: fit-content;
     height: fit-content;
 }
 
 #board {
     position: relative;
-    width: calc(100vw - 60px);
-    height: calc(100vh - 200px);
+    width: 100vw;
+    height: calc(100vh - var(--header-height));
     overflow: auto;
 }
 
@@ -127,8 +130,10 @@ h1 {
 
 /*leaderboard*/
 .leaderboard {
+    display: inline-flex;
     text-align: center;
-    margin-top: 10px;
+    margin-bottom: 10px;
+    width: fit-content;
 }
 
 .openLeaderboard {
@@ -137,5 +142,23 @@ h1 {
     color: white;
     padding: 6px;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
 }
+
+@media screen and (max-width: 804px) {
+    :root {
+        --header-height: 200px;
+    }
+}
+
+@media screen and (max-width: 525px) {
+    :root {
+        --header-height: 280px;
+    }
+}
+
