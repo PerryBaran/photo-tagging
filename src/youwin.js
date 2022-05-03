@@ -1,7 +1,7 @@
 import start from './game.js';
 import reset from './reset.js';
-import leaderboardButton from './leaderboardDOM.js';
 import submitToLeaderboard from './firebase/submitTime.js';
+import getLeaderboard from './firebase/leaderboard.js';
 
 //creates winning screen
 const youWin = (timer) => {
@@ -24,6 +24,7 @@ const youWin = (timer) => {
     div.appendChild(p2);
 
     const form = document.createElement('form');
+    form.className = 'leaderboardForm'
     const name = document.createElement('input');
     name.placeholder = 'name';
     name.required = true;
@@ -46,6 +47,7 @@ const youWin = (timer) => {
 
     const restart = document.createElement('button');
     restart.innerHTML = 'restart';
+    restart.className = 'restart';
     restart.onclick = () => {
         reset(div);
         start();
@@ -54,7 +56,7 @@ const youWin = (timer) => {
 
     container.appendChild(div);
 
-    leaderboardButton(container);
+    getLeaderboard(container, 'endscreen');
 }
 
 const checkWin = (array, timer) => {

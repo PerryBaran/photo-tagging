@@ -77,14 +77,24 @@ h1 {
 /*select found character popup*/
 .popup {
     position: absolute;
-    background-color: white;
-    border-radius: 2px;
     cursor: pointer;
+}
+
+.target {
+    font-size: 4rem;
+    background-color: none;
+    color: rgb(0, 217, 255);
+}
+
+.selectContainer {
+    border-radius: 2px;
+    border: 2px solid red;
 }
 
 .select {
     font-size: 1.5rem;
     padding: 2px;
+    background-color: white;
 }
 
 .select:hover {
@@ -95,15 +105,20 @@ h1 {
 /*start game button*/
 .start {
     background-color: red;
-    border: none;
+    border: 2px solid red;
     border-radius: 20px;
     font-size: 5rem;
     color: white;
     position: absolute;
-    top: 40%;
+    top: 5%;
     transform: translateY(-50%);
     left: 50%;
     transform: translateX(-50%);
+}
+
+.start:hover {
+    background-color: white;
+    color: red;
 }
 
 /*win screen*/
@@ -114,7 +129,7 @@ h1 {
     font-size: 2rem;
     color: white;
     position: absolute;
-    top: 40%;
+    top: 20%;
     transform: translateY(-50%);
     left: 50%;
     transform: translateX(-50%);
@@ -125,29 +140,96 @@ h1 {
 }
 
 .small {
-    font-size: 1rem;
+    font-size: 1.3rem;
+}
+
+.leaderboardForm > button {
+    background-color: white;
+    color: red;
+    border: 2px solid white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.leaderboardForm > input {
+    border: 2px solid white;
+    border-right: 1px solid red;
+    font-size: 1.2rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.leaderboardForm > button:hover{
+    background-color: red;
+    color: white;
+}
+
+.restart {
+    background-color: white;
+    color: red;
+    font-size: 1.2rem; 
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.restart:hover {
+    background-color: red;
+    color: white;
 }
 
 /*leaderboard*/
-.leaderboard {
-    display: inline-flex;
-    text-align: center;
-    margin-bottom: 10px;
-    width: fit-content;
-}
-
-.openLeaderboard {
+.leaderboardContainer {
     background-color: red;
-    border: none;
     color: white;
-    padding: 6px;
-    border-radius: 10px;
-    font-size: 1.5rem;
+
     position: absolute;
-    top: 70%;
+    
     transform: translateY(-50%);
     left: 50%;
     transform: translateX(-50%);
+
+    font-size: 3rem;
+
+    height: 400px;
+    padding: 10px;
+
+    border-radius: 10px;
+}
+
+.startscreen {
+    top: 25%;
+}
+
+.endscreen {
+    top: 50%;
+}
+
+.leaderboardContainer > h2 {
+    height: 80px;
+}
+
+.leaderboard {
+    font-size: 2rem;
+    height: calc(100% - 100px);
+    overflow-y: auto;
+}
+
+.row {
+    border-bottom: 1px solid white;
+}
+
+.row > p {
+   display: inline-block; 
+}
+
+.place {
+    width: 40px;
+}
+
+.name {
+    width: 300px;
 }
 
 @media screen and (max-width: 804px) {

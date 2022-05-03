@@ -7,7 +7,7 @@ import checkWin from "./youwin.js";
 import reset from "./reset.js";
 import checkFound from "./found";
 import Timer from "./timer.js";
-import leaderboardButton from "./leaderboardDOM";
+import getLeaderboard from "./firebase/leaderboard";
 
 //sets up start button
 const start = () => {
@@ -43,7 +43,7 @@ const start = () => {
     
     gameContainer.appendChild(button);
     //open leaderboard button
-    leaderboardButton(gameContainer);
+    getLeaderboard(gameContainer, 'startscreen');
 }
 
 //creates characters DOM elements and styles depending on found status
@@ -107,10 +107,16 @@ const createBoard = (container) => {
 const popup = (x, y, container, characters, charactersContainer, timer) => {
     reset(container);
 
+    const target = document.createElement('p');
+    target.innerHTML = '+';
+    target.className = 'target';
+    
     //positions popup near mouse
-    container.style.left = `${x + 20}px` 
-    container.style.top = `${y + 20}px`
+    container.style.left = `${x - 17}px` 
+    container.style.top = `${y - 35}px`
 
+    const selectContainer = document.createElement('div')
+    selectContainer.className = 'selectContainer';
     //creates character selection list
     const length = characters.length;
     for (let i = 0; i < length; i++) {
@@ -133,8 +139,11 @@ const popup = (x, y, container, characters, charactersContainer, timer) => {
         });
 
         select.appendChild(name);
-        container.appendChild(select);
+        selectContainer.appendChild(select);
     }
+
+    container.appendChild(target);
+    container.appendChild(selectContainer);
 };
 
 export default start
