@@ -2,6 +2,7 @@ import start from './game.js';
 import reset from './reset.js';
 import submitToLeaderboard from './firebase/submitTime.js';
 import getLeaderboard from './firebase/leaderboard.js';
+import profanityFilter from './profanityFilter.js';
 
 //creates winning screen
 const youWin = (timer) => {
@@ -36,8 +37,12 @@ const youWin = (timer) => {
     submit.onclick = (e) => {
         e.preventDefault();
         const valid = form.checkValidity();
-        if (valid) {
-            const doc = {name: name.value, time: timer.getTime()}
+        const getName = name.value;
+        const getTime = timer.getTime();
+        if (profanityFilter(getName)) {
+            alert('watch your profanity')
+        } else if (valid) {
+            const doc = {name: getName, time: getTime}
             submitToLeaderboard(doc);
             reset(div);
             start();

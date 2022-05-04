@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/PerryBaran/photo-tagging#readme",
   "dependencies": {
+    "bad-words": "^3.0.4",
     "firebase": "^9.6.11",
+    "leo-profanity": "^1.5.0",
     "uniqid": "^5.4.0"
   },
   "devDependencies": {

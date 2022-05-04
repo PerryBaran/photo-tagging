@@ -230,7 +230,7 @@ h1 {
 }
 
 .place {
-    width: 35px;
+    width: 45px;
 }
 
 .place::after {
@@ -238,7 +238,7 @@ h1 {
 }
 
 .name {
-    width: 290px;
+    width: 275px;
 }
 
 @media screen and (max-width: 804px) {
@@ -293,15 +293,15 @@ h1 {
     }
 
     .leaderboard {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
     .name {
-        width: 200px;
+        width: 180px;
     }
 
     .place {
-        width: 20px;
+        width: 40px;
     }
 
     .startscreen {
