@@ -214,10 +214,15 @@ h1 {
     font-size: 2rem;
     height: calc(100% - 100px);
     overflow-y: auto;
+    background-color: white;
+    color: red;
+    border-radius: 10px;
 }
 
 .row {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid red;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .row > p {
@@ -225,22 +230,89 @@ h1 {
 }
 
 .place {
-    width: 40px;
+    width: 35px;
+}
+
+.place::after {
+    content: "."
 }
 
 .name {
-    width: 300px;
+    width: 290px;
 }
 
 @media screen and (max-width: 804px) {
     :root {
         --header-height: 200px;
     }
-}
+    
+    .win {
+        font-size: 2rem;
+        top: 26%;
+        padding: 5px;
+        width: 350px;
+    }
+    
+    .small {
+        font-size: 1rem;
+    }
+    
+    .leaderboardForm > button {
+        font-size: 1rem;
+    }
+    
+    .leaderboardForm > input {
+        font-size: 1rem;
+    }
+    
+    .restart {
+        font-size: 1rem; 
+    }
 
-@media screen and (max-width: 525px) {
-    :root {
-        --header-height: 280px;
+    .leaderboardContainer {
+        height: 360px;
+    }
+    
+    .leaderboardContainer > h2 {
+        height: 70px;
+    }
+    
+    .endscreen {
+        top: 52%;
     }
 }
 
+@media screen and (max-width: 525px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    .leaderboardContainer {
+        font-size: 2rem;
+        height: fit-content;
+    }
+
+    .leaderboard {
+        font-size: 1.4rem;
+    }
+
+    .name {
+        width: 200px;
+    }
+
+    .place {
+        width: 20px;
+    }
+
+    .startscreen {
+        top: 22%;
+    }
+    
+    
+
+    .start {
+        top: 2%;
+    }
+
+    
+}

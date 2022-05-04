@@ -28,6 +28,7 @@ const youWin = (timer) => {
     const name = document.createElement('input');
     name.placeholder = 'name';
     name.required = true;
+    name.setAttribute('maxLength', 15)
     form.appendChild(name);
 
     const submit = document.createElement('button');
